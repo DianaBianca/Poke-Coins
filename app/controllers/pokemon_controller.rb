@@ -1,7 +1,13 @@
 class PokemonController < ApplicationController
   def new_aquisition
+    @pokemons_data = fetch_pokemons_info
+  end
   
-    @pokemons_data = fetch_pokemons_info#[{name: , type: , price: experience_quotation(experience, btc_price)}]
+  def create
+    
+    binding.pry
+    
+    puts "params : #{params}" 
   end
 
   private
@@ -22,8 +28,8 @@ class PokemonController < ApplicationController
 
       photo = data["sprites"]["other"]["dream_world"]["front_default"]
       type = data["types"].map{|info| info["type"]["name"]}
-
-      { name: name, photo: photo,type: type, price: experience_quotation(data["base_experience"]).ceil(2) }
+      experience = data["base_experience"]
+      { name: name, photo: photo, type: type, base_experience: experience, price: experience_quotation(data["base_experience"]).ceil(2) }
     end
   end
 

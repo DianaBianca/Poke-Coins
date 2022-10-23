@@ -1,42 +1,29 @@
-<%= @pokemons_data.each do |pokemon| %>
-
-<% end %>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
+ 
+<div class="row ">
+  <%= @pokemons_data.each do |pokemon| %>
+  <div class="col-md-3 poke-card">
+    <div class="card ">
+      <%= image_tag pokemon[:photo], class: "card-img-top" %>
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <h5 class="card-title"><%= pokemon[:name].capitalize %>
+       
+          <% pokemon[:type].each do |type|%>
+          <span class="badge bg-primary"><%= type %></span>
+          <% end %>
+        </h5>
+        <p>
+          Experience: <%= pokemon[:base_experience]%> |  Price: R$ <%= pokemon[:price]%></p>
+      </div>
+      <div class="card-footer">
+        <%= button_tag "Buy Now", class: "btn btn-primary", data: { confirm: "Are you sure?" }%>
+       
+				<%= button_to 'Buy Now', {:controller => "pokemon", :action => "create", :nome => pokemon[:name]}, :method=> :get %>
       </div>
     </div>
+  
   </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a short card.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
+  <% end %>
 </div>
+
+
+
