@@ -10,6 +10,10 @@ class PokemonController < ApplicationController
     puts "params : #{params}" 
   end
 
+  def sell_pokemon
+
+  end
+
   private
 
   def fetch_pokemons_info

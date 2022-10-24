@@ -1,27 +1,22 @@
  
 <div class="row ">
   <%= @pokemons_data.each do |pokemon| %>
-  <div class="col-md-3 poke-card">
-    <div class="card ">
-      <%= image_tag pokemon[:photo], class: "card-img-top" %>
-      <div class="card-body">
-        <h5 class="card-title"><%= pokemon[:name].capitalize %>
-       
-          <% pokemon[:type].each do |type|%>
-          <span class="badge bg-primary"><%= type %></span>
-          <% end %>
-        </h5>
-        <p>
-          Experience: <%= pokemon[:base_experience]%> |  Price: R$ <%= pokemon[:price]%></p>
-      </div>
-      <div class="card-footer">
-        <%= button_tag "Buy Now", class: "btn btn-primary", data: { confirm: "Are you sure?" }%>
-       
-				<%= button_to 'Buy Now', {:controller => "pokemon", :action => "create", :nome => pokemon[:name]}, :method=> :get %>
+    <div class="col-md-3 poke-card">
+      <div class="card ">
+        <%= image_tag pokemon[:photo], class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title"><%= pokemon[:name].capitalize %>
+            <% pokemon[:type].each do |type|%>
+            <span class="badge bg-primary"><%= type %></span>
+            <% end %>
+          </h5>
+          <p>Experience: <%= pokemon[:base_experience]%> |  Price: R$ <%= pokemon[:price] %></p>
+        </div>
+        <div class="card-footer">
+          <%=  button_to  "Buy Now", buy_pokemon_path( name: pokemon[:name], xp: pokemon[:base_experience], price: pokemon[:price], type: pokemon[:type] ),  class: "btn btn-primary", method: "post" %>
+        </div>
       </div>
     </div>
-  
-  </div>
   <% end %>
 </div>
 

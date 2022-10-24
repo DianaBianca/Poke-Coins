@@ -10,8 +10,9 @@ gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 gem "sprockets-rails"
 
 gem  'mini_racer', platforms: :ruby
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+
+# Use postgresql as the database for Active Record
+gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -29,7 +30,6 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem "faraday"
-
 
 gem "rest-client"
 
