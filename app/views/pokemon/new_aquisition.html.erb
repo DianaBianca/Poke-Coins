@@ -10,10 +10,10 @@
             <span class="badge bg-primary"><%= type %></span>
             <% end %>
           </h5>
-          <p>Experience: <%= pokemon[:base_experience]%> |  Price: R$ <%= pokemon[:price] %></p>
+          <p>Experience: <%= pokemon[:base_experience]%> | Price: R$ <%= pokemon[:price] %></p>
         </div>
         <div class="card-footer">
-          <%=  button_to  "Buy Now", buy_pokemon_path( name: pokemon[:name], xp: pokemon[:base_experience], price: pokemon[:price], type: pokemon[:type] ),  class: "btn btn-primary", method: "post" %>
+          <%=  button_to  "Buy Now", buy_pokemon_path( name: pokemon[:name], xp: pokemon[:base_experience], price: pokemon[:price], photo: pokemon[:photo], type: "#{pokemon[:type]}", status:"disponivel" ),  class: "btn btn-primary", method: "post" %>
         </div>
       </div>
     </div>

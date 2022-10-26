@@ -6,8 +6,7 @@ class PokemonController < ApplicationController
   def create
     
     binding.pry
-    
-    puts "params : #{params}" 
+    Pokemon.new(pokemon_params)
   end
 
   def sell_pokemon
@@ -33,6 +32,7 @@ class PokemonController < ApplicationController
       photo = data["sprites"]["other"]["dream_world"]["front_default"]
       type = data["types"].map{|info| info["type"]["name"]}
       experience = data["base_experience"]
+
       { name: name, photo: photo, type: type, base_experience: experience, price: experience_quotation(data["base_experience"]).ceil(2) }
     end
   end
@@ -50,6 +50,19 @@ class PokemonController < ApplicationController
   def fetch_pokemon_data(name)
     response = Faraday.get("https://pokeapi.co/api/v2/pokemon/#{name}")
     JSON.parse(response.body)
+  end
+
+  def pokemon_params
+    params
+      .require(:pokemon)
+      .permit(
+        :name,
+        :price,
+        :type,
+        :xp,
+        :photo,
+        :status
+      )
   end
 
 end
